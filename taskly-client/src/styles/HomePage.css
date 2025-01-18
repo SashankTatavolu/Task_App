@@ -1,0 +1,16 @@
+.home-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .content {
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .content img {
+    width: 60%; /* Full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    max-width: none; /* Optional: remove max-width if needed */
+    margin-top: 20px;
+}

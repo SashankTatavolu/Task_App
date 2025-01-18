@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import API from "../utils/api";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
@@ -16,13 +16,8 @@ function Login() {
     e.preventDefault();
     try {
       const response = await API.post("/auth/login", formData);
-      localStorage.setItem("token", response.data.token); // Store token
-      // Redirect based on the user role
-      if (response.data.user.role === "admin") {
-        navigate("/admin-dashboard");
-      } else {
-        navigate("/dashboard");
-      }
+      localStorage.setItem("token", response.data.token);
+      navigate("/dashboard"); // Redirect to the dashboard
     } catch (err) {
       console.error("Error logging in:", err);
     }
@@ -42,17 +37,24 @@ function Login() {
             placeholder="Email"
             required
           />
-          <input
-            className="auth-input"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
+          <div className="password-container">
+            <input
+              className="auth-input"
+              type={"password"}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+          </div>
           <button type="submit">Login</button>
         </form>
+        <div className="signup-link">
+          <p>
+            Don't have an account? <a href="/signup">Sign up</a>
+          </p>
+        </div>
       </div>
     </div>
   );
